@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050b17">
+<title>admin</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+<style>
+  /* إصلاح مشكلة التمرير في صفحة الأدمن */
+  html, body {
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    display: block !important;
+    padding-top: 20px !important;
+    padding-bottom: 60px !important;
+  }
+</style>
+</head>
+<body>
+
+<div id="adminGate">
+  <div class="gate-box">
+    <div class="gate-title">restricted</div>
+    <input type="password" id="gatePass" placeholder="key" autocomplete="off">
+    <button class="btn" id="gateBtn">Enter</button>
+    <div class="error" id="gateError"></div>
+  </div>
+</div>
+
+<div id="adminPanel" style="display:none;">
+  <!-- الهيدر الجديد -->
+  <div class="admin-header">
+    <div class="admin-title">admin · room</div>
+    <div class="admin-status">
+      <span id="presenceDot">⚪</span>
+      <span id="presenceText">offline</span>
+    </div>
+  </div>
+
+  <div class="admin-section">
+    <div class="admin-label">live draft</div>
+    <div class="live-draft" id="liveDraft">
+      <span class="live-text" id="liveText"></span><span class="live-cursor"></span>
+    </div>
+    <div class="live-meta" id="liveMeta">—</div>
+  </div>
+
+  <!-- قسم logins الجديد -->
+  <div class="admin-section">
+    <div class="admin-label">logins</div>
+    <div class="admin-list" id="adminLogins"></div>
+  </div>
+
+  <div class="admin-section">
+    <div class="admin-label">sent messages</div>
+    <div class="admin-list" id="adminSent"></div>
+  </div>
+
+  <div class="admin-section">
+    <div class="admin-label">compose a reply</div>
+    <textarea id="replyBox" placeholder="write back to her..."></textarea>
+    <button class="btn" id="replyBtn">Send reply</button>
+    <div class="sent-flash" id="replyFlash">sent ✓</div>
+  </div>
+
+  <div class="admin-section">
+    <div class="admin-label">drafts history</div>
+    <div class="admin-list" id="adminDrafts"></div>
+  </div>
+
+  <!-- قسم Danger Zone الجديد -->
+  <div class="admin-section danger-zone">
+    <div class="admin-label">danger zone</div>
+    <div class="danger-desc">this cannot be undone. tap twice to confirm.</div>
+
+    <button class="danger-btn" data-clear="sent">
+      <span>clear sent messages</span>
+      <span class="danger-count" id="countSent">—</span>
+    </button>
+    <button class="danger-btn" data-clear="drafts">
+      <span>clear drafts history</span>
+      <span class="danger-count" id="countDrafts">—</span>
+    </button>
+    <button class="danger-btn" data-clear="logins">
+      <span>clear logins</span>
+      <span class="danger-count" id="countLogins">—</span>
+    </button>
+    <button class="danger-btn" data-clear="replies">
+      <span>clear replies</span>
+      <span class="danger-count" id="countReplies">—</span>
+    </button>
+
+    <div class="danger-feedback" id="dangerFeedback"></div>
+  </div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
