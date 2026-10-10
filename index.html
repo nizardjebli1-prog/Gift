@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a1730">
+<title>Private</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- LOGIN -->
+  <div class="screen active" id="screen-login">
+    <div class="title">Private</div>
+    <div class="subtitle">this place has one key</div>
+    <input type="text" id="username" placeholder="******ti or simply ur name" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <input type="password" id="password" placeholder="1******z" autocomplete="off">
+    <button class="btn" id="loginBtn">Enter</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+
+  <!-- BLOCKED -->
+  <div class="screen" id="screen-blocked">
+    <div class="blocked-text">You are not the right person.</div>
+    <div class="blocked-timer" id="blockedTimer">try again in 03:33:33</div>
+    <button class="btn-unlock" onclick="forceUnlock()">Force Unlock (Debug)</button>
+  </div>
+
+  <!-- LOADING -->
+  <div class="screen" id="screen-loading"><div class="loader-w">W</div></div>
+
+  <!-- WRITE -->
+  <div class="screen" id="screen-write">
+    <div class="write-wrap">
+      <div class="write-welcome" id="writeWelcome">.</div>
+
+      <div class="write-area">
+        <textarea id="writeBox"
+          placeholder="write here..."
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="sentences"
+          spellcheck="false"
+          rows="1"></textarea>
+      </div>
+
+      <div class="write-actions">
+        <div class="sent-flash" id="sentFlash">sent ✓</div>
+        <button class="btn send-btn" id="sendBtn">Send</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="visit-counter" id="visitCounter"></div>
+
+<!-- ACCOUNT BUTTON -->
+<button class="account-btn" id="accountBtn" onclick="openAccount()">
+  <span class="acc-btn-icon">🦢</span>
+</button>
+
+<!-- ACCOUNT OVERLAY -->
+<div id="accountScreen">
+  <button class="acc-back-top" onclick="closeAccount()">← back</button>
+  <div class="acc-header">
+    <div class="acc-avatar">W</div>
+    <div class="acc-info">
+      <div class="acc-name" id="accName">W</div>
+      <div class="acc-time" id="accTime">--:--</div>
+    </div>
+    <div class="acc-actions">
+      <div class="acc-weather" id="accWeather">☀</div>
+      <button class="acc-settings-btn" onclick="openSettings()">⚙</button>
+    </div>
+  </div>
+  <div class="acc-tabs">
+    <button class="acc-tab active" data-tab="inbox">Inbox</button>
+    <button class="acc-tab" data-tab="sent">Sent</button>
+  </div>
+  <div class="acc-content" id="accContent"></div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal" id="settingsModal">
+  <div class="modal-box">
+    <div class="modal-title">Settings</div>
+    <div class="toggle-row">
+      <div class="toggle-label">Dark mode</div>
+      <div class="toggle-switch" id="darkToggle" onclick="toggleDark()"></div>
+    </div>
+    <div style="margin-top:18px;">
+      <div class="toggle-label" style="margin-bottom:10px;">Your name</div>
+      <input class="modal-input" id="nameInput" maxlength="15" placeholder="max 15 characters">
+      <div class="modal-hint"><span id="nameCount">0</span>/15</div>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn secondary" onclick="closeSettings()">Close</button>
+      <button class="modal-btn primary" onclick="saveSettings()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- DEBUG PANEL -->
+<div id="debugPanel" class="show">
+  <div class="debug-head">
+    <span>◉ DEBUG LOG</span>
+    <span>
+      <button onclick="clearDebugLog()">clear</button>
+      <button onclick="hideDebugPanel()">hide</button>
+    </span>
+  </div>
+  <div id="debugLog"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
